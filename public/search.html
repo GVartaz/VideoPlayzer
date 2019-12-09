@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr" ng-app="demoApp">
+    <head>
+        <meta charset="utf-8">
+        <title>MyTodoList</title>
+        <script src="angular.min.js"></script>
+        <script src="main.js"></script>
+        <link href="search.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body ng-controller="SearchController">
+        <div id="entete">
+            <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <center><h1><img src="img/logo.png" alt="Logo Todo">VideoPlayzer</h1></center>
+        </div>
+        <div id="contenu">
+            <div id="list-form">
+                <center>
+                    <form>
+                        <input type="text" required="" id="searchIn" placeholder=" Mots-clés" ng-model="formListe.name" required>
+                        <button type="submit" class="btn btn-success" ng-click="createList()">Recherche</button>
+                        <div id="site">
+                            <input type="radio" checked name="yt">Youtube
+                            <input type="radio" checked name="daily">Dailymotion
+                        </div>
+                    </form>
+                </center>
+            </div>
+            <table>  
+                <div id="videos">
+                        
+                </div>
+            </table>  
+        </div>
+        <p id="footer">
+            <i>
+                Projet App Web et Mobile - Polytech Marseille
+                <br>
+                Copyright © Geoffrey VARTAZIAN 2019
+            </i>
+        </p>
+    </body>
+</html>

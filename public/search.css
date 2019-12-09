@@ -1,0 +1,117 @@
+#entete{
+    background-image:linear-gradient(rgb(138, 140, 206), rgb(122, 122, 218));
+}
+
+center{
+    padding: 25px;
+}
+
+body{
+    background-color: #d4d1d1 !important;
+}
+
+#contenu{
+    padding: 3%;
+}
+
+center h1 img{
+    padding-right: 10px;
+    width: 100px;
+}
+
+#searchIn{
+    border-style: groove;
+    border-width: 1px;
+    border-color: rgb(122, 122, 218);
+    border-radius: 5px;
+    width: 40%;
+    height: 30px;
+}
+
+#liste{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: groove;
+    border-width: 1px;
+    border-color: rgb(122, 122, 218);
+    border-radius: 5px;
+}
+
+#liste h4{
+    display: inline;
+    padding: 2%;
+}
+
+#del-liste{
+    float: left;
+}
+
+#modifTask{
+    float: right;
+}
+
+#delTask{
+    margin-left: 25px;
+}
+
+#nomListe{
+    background-color: rgb(122, 122, 218);
+    padding: 2%;
+}
+
+#list-form h5{
+    display: inline;
+}
+
+
+#list-form{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#list-form button{
+    margin-left: 1%;
+}
+
+#todo-form{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#task h5{
+    padding: 2%;
+}
+
+#logout{
+    float: right;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+#content{
+    display: inline;
+}
+
+#cb{
+    display: inline;
+}
+
+#select-warning{
+    color: red;
+}
+
+#liste-warning{
+    color: red;
+}
+
+p#footer
+{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: rgba(153, 221, 252, 0.8) ;
+    margin: 100px 0 0 0;
+    font-size: 1.2em ;
+    color: #000000 ;
+    text-align: center ;
+}

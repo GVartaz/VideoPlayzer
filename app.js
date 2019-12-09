@@ -3,7 +3,7 @@ var dataLayer = require('./dataLayer.js');
 var express = require('express');
 var session = require('express-session');
 const app = express();
-const port = 3000;
+const port = 5000;
 var bodyParser = require('body-parser');
 var parseurl = require('parseurl');
 app.use(bodyParser.json());

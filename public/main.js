@@ -57,12 +57,16 @@ demoApp.controller('LoginController',function ($scope, $http){
                     pwd.value = "";
                 } else {
                     $scope.formLogin = {};
-                    window.location.href = "./myTasks.html";
+                    window.location.href = "./favorites.html";
                     alert("Connexion réussie");
                 }
             });
         }
     };
+});
+
+demoApp.controller('SearchController',function($scope,$http){
+
 });
 
 demoApp.controller('MainController',function ($scope, $http){

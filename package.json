@@ -1,7 +1,7 @@
 {
-  "name": "Tuto",
+  "name": "VideoPlayzer",
   "version": "1.0.0",
-  "description": "tp3 web",
+  "description": "Projet Urbansiation",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
