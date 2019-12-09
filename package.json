@@ -1,0 +1,20 @@
+{
+  "name": "Tuto",
+  "version": "1.0.0",
+  "description": "tp3 web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Geoffrey Vartazian",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "mongoose": "^5.4.17",
+    "morgan": "^1.9.1"
+  }
+}

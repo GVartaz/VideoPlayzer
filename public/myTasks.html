@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr" ng-app="demoApp">
+    <head>
+        <meta charset="utf-8">
+        <title>MyTodoList</title>
+        <script src="angular.min.js"></script>
+        <script src="main.js"></script>
+        <link href="tasks.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body ng-controller="MainController">
+        <div id="entete">
+            <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <center><h1><img src="img/logo.png" alt="Logo Todo">My Todo List</h1></center>
+        </div>
+        <div id="contenu">
+            <h2>Bienvenue {{user}}!</h2>
+            <div id="list-form">
+                <form>
+                    <h5>Nouvelle liste : </h5>
+                    <input type="text" required="" id="newListe" placeholder="Nom de la liste" ng-model="formListe.name">
+                    <button type="submit" class="btn btn-success" ng-click="createList()">Créer</button>
+                    <p id="liste-warning"></p>
+                </form>
+            </div>
+            <div id="liste" ng-repeat="liste in listSet | orderBy:'+name'">
+                <div id="nomListe">
+                    <h4>{{liste.name}}</h4>
+                    <button id="del-liste" class="btn btn-danger" ng-click="deleteList(liste._id)"> x </button>
+                </div>
+                <table>  
+                    <div id="task" ng-repeat="x in taskSet">
+                        <h5 ng-if="x.liste == liste.name">
+                            <div id ="cb">
+                                <!--<input type="checkbox" id="done{{x._id}}" ng-change="switch(x._id)" ng-checked="x.done" ng-model="formData.check">-->
+                                <div id="content" ng-if="x.done"> 
+                                    <img src="img/checked.png" alt="Task done" ng-click="switch(x._id)">
+                                    <del>{{ x.text }}</del>
+                                    <i>({{x.date}})</i>
+                                </div>
+                                <div id="content" ng-if="!x.done">
+                                    <img src="img/unchecked.png" alt="Task not done" ng-click="switch(x._id)">
+                                    {{ x.text }}
+                                    <i>({{x.date}})</i>
+                                </div>
+                            </div>
+                            <div id="modifTask">
+                                <input style="display: none; margin-right: 10px;" id="text{{x._id}}" type="text" placeholder="Ma tache" ng-model="formData.modif">
+                                <button style="display: none;" id="btn{{x._id}}" class="btn btn-primary" ng-click="update(x._id)"> Valider </button>
+                                <button class="btn btn-primary" id="modif{{x._id}}" ng-click="openEdit(x._id)"> Modifier </button>
+                                <button id="delTask" class="btn btn-danger" ng-click="deleteTodo(x._id)"> x </button>
+                            </div>
+                        </h5>
+                    </div>
+                </table>  
+            </div>
+            <div id="todo-form">
+                <form>
+                    <p>
+                        Tâche : <input type="text" id="newTache" required placeholder="Ma tache" ng-model="formData.text">
+                    </p>
+                    <p>
+                        Associer à la liste : 
+                        <select id="select-liste" ng-model="formData.select">
+                            <option ng-repeat="l in listSet | orderBy:'+name'" value="{{l.name}}">{{l.name}}</option>
+                        </select>
+                    </p>
+                    <button type="submit" class="btn btn-success" ng-click="createTodo()"> Ajouter </button>
+                    <p id="select-warning"></p>
+                </form>
+            </div>
+        </div>
+        <p id="footer">
+            <i>
+                Projet App Web et Mobile - Polytech Marseille
+                <br>
+                Copyright © Geoffrey VARTAZIAN 2019
+            </i>
+        </p>
+    </body>
+</html>

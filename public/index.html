@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr" ng-app="demoApp">
+    <head>
+        <meta charset="utf-8">
+        <title>MyTodoList</title>
+        <script src="angular.min.js"></script>
+        <script src="main.js"></script>
+        <link href="login.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body ng-controller="LoginController">
+            <div id="entete">
+                <center><h1><img src="img/logo.png" alt="Logo Todo">My Todo List</h1></center>
+            </div>
+        <br/> 
+        <center>
+            <div id="login-form">
+                <h3>Connexion</h3>
+                <form id="loginForm">
+                    <p>
+                        Login : <input type="text" id="login" required style="margin-bottom: 10px;" placeholder="Mon login" ng-model="formLogin.login">
+                    </p>
+                    <p>
+                        Mot de passe : <input required type="password" id="password" style="margin-bottom: 10px;" ng-model="formLogin.pwd">
+                    </p>
+                    <button type="submit" class="btn btn-success" ng-click="connexion()">Se connecter</button>
+                </form>
+                <button id="sign" class="btn btn-primary" onClick="window.location.href = './inscription.html'" class="btn btn-secondary">S'inscrire</button>
+            </div>
+        <div id="ad">
+            <h4>"Cette Todo liste en ligne, c'est le futur!"</h4>
+            --- <i>Le Gorafi</i>
+        </div>
+    </center>
+        <p id="footer">
+            <i>
+                Projet App Web et Mobile - Polytech Marseille
+                <br>
+                Copyright © Geoffrey VARTAZIAN 2019
+            </i>
+        </p>
+    </body>
+</html>
