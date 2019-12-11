@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var parseurl = require('parseurl');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
+const Youtube = require("./server/api-streaming/Youtube");
 app.use(express.static('public'));
 
 app.use(session({
@@ -27,6 +27,30 @@ dataLayer.init(function(){
     console.log("Connectiong to db");
     app.listen(process.env.PORT || 5000)
     console.log("App listening on port "+port);
+});
+
+app.post("/search", function(req, res){
+    var that = this;
+    //get param
+    var slug;
+
+    try {
+        slug = req.body.search;
+
+        if (!slug) throw "";
+    } catch (e) {
+        res.send("MISSING_PARAMS");
+        return;
+    }
+
+    //slug = this.deslugify(slug);
+
+    Youtube.search(slug.toString().toLowerCase(),10).then(function (data) {
+        res.send({videos : data})
+    }).catch(function (err) {
+        res.send(err);
+    })
+
 });
 
 app.post("/connexion",function(req,res){

@@ -65,7 +65,17 @@ demoApp.controller('LoginController',function ($scope, $http){
     };
 });
 
-demoApp.controller('SearchController',function($scope,$http){
+demoApp.controller('SearchController',function($scope,$http,$sce){
+    $scope.formVideo = {};
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+    }
+    $scope.createList = function (){
+        $http.post('/search',$scope.formVideo).then(function(resp){
+            console.log(resp.data.videos);
+            $scope.videoSet = resp.data.videos.results;
+        })
+    }
 
 });
 
