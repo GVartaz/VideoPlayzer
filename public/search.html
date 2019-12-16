@@ -30,7 +30,7 @@
             <table>
                 <tr ng-repeat="x in videoSet">
                     <td>
-                        <iframe width="560" height="315" ng-src="{{trustSrc(x.embedurl)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <img width="x.thumbnails.medium.width" height="x.thumbnails.medium.height" ng-src="{{trustSrc(x.thumbnails.medium.url)}}">
                         <div id="infosVideo">
                             <b>{{x.title}}</b>
                             <button ng-if="user._id" ng-click="addFav(x.id)">☆</button>
