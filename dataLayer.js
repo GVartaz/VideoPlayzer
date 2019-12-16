@@ -84,6 +84,12 @@ var dataLayer = {
         });
     },
 
+    insertVideo : function(video,cb){
+        db.collection("Videos").insertOne(video,function(err,result){
+            cb();
+        })
+    },
+
     getTask : function(id,cb){
         ObjectID = require('mongodb').ObjectID;
         var ident = {

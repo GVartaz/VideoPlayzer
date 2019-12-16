@@ -102,6 +102,12 @@ demoApp.controller('SearchController',function($scope,$http,$sce){
         }
     )};
 
+    $scope.addFav = function (id){
+        $http.post('/addFav/'+id).then(function(resp){
+            $scope.user = resp.data;
+        })
+    }
+
 });
 
 demoApp.controller('FavController',function($scope,$http,$sce){

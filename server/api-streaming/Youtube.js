@@ -32,10 +32,16 @@ class Youtube {
     };
 
     getVideoById(id){
-        return youtubeAPI.getVideoByID(id);
+        return new Promise(function (resolve, reject) {
+            youtubeAPI.getVideoByID(id).then(function (results) {
+                resolve(results);
+            }).catch(function(err){
+                reject(err);
+            })
+        })
     };
 
-    normalize(video){
+    normalize(video,user){
         var result = {};
 
         result.id = video.id;
@@ -43,7 +49,7 @@ class Youtube {
         result.description = video.description
 
 
-        result.thumbnails = {};
+        /*result.thumbnails = {};
         result.thumbnails.default = {};
         result.thumbnails.medium = {};
         result.thumbnails.high = {};
@@ -66,17 +72,17 @@ class Youtube {
             result.thumbnails.high.url = video.thumbnails.high.url;
             result.thumbnails.high.width = video.thumbnails.high.width;
             result.thumbnails.high.height = video.thumbnails.high.height;
-        }
+        }*/
 
-        result.channel = {};
-        result.channel.id = video.channel.id;
-        result.channel.title = video.channel.title;
+        result.channel = video.channel.title;
 
-        result.link = null;
+        result.embedurl = "http://www.youtube.com/embed/"+video.id;
 
         result.publishedAt = video.publishedAt;
 
         result.brand = "Youtube";
+
+        result.user = user;
 
         return result;
     }

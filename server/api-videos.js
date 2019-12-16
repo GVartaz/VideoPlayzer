@@ -92,6 +92,28 @@ class APIVideo {
             })
 
         });
+
+        router.get("/video",(req,res) => {
+            var that = this;
+
+            var videoId;
+            try {
+                videoId = req.query.slug;
+
+                if (!slug) throw "";
+            } catch (e) {
+                res.send(this.makeError("MISSING_PARAMS"));
+                return;
+            }
+
+            Promise.all(Youtube.search(slug.toString().toLowerCase(),10)).then(function (data) {
+                res.send(that.makeSuccess({video : data}))
+            }).catch(function (err) {
+                res.send(that.makeError(err))
+            })
+
+        })
+
         /*
         router.get("/get", (req, res) => {
             var that = this;

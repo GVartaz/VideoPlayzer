@@ -121,6 +121,17 @@ app.post("/addUser",function(req,res){
     });
 })
 
+app.post("/addFav/:id",function(req,res){
+    var u = req.session.user;
+    Youtube.getVideoById(req.params.id).then(function(video) {
+        dataLayer.insertVideo(Youtube.normalize(video,u._id),function(){
+            res.send(u);
+        })
+    }).catch(function (err) {
+        res.send(err);
+    })
+})
+
 app.get("/getTaskSet",function(req,res){
     var user = req.session.logUser;
     var liste;
