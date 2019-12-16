@@ -8,7 +8,7 @@
         <link href="search.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <body ng-controller="SearchController">
+    <body ng-controller="FavController">
         <div id="entete">
             <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
             <center><h1><img src="img/logo.png" alt="Logo Todo">VideoPlayzer</h1></center>
@@ -32,6 +32,7 @@
                         <iframe width="560" height="315" ng-src="{{trustSrc(x.embedurl)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div id="infosVideo">
                             <b>{{x.title}}</b>
+                            <button >★</button>
                             <br>
                             <i>par {{x.channelTitle}}</i>
                         </div>

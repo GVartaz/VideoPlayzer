@@ -94,8 +94,8 @@ var dataLayer = {
         });
     },
 
-    insertTask : function(task,cb){
-        db.collection("Tasks").insertOne(task,function(err,result){
+    insertVideo : function(video,cb){
+        db.collection("Videos").insertOne(video,function(err,result){
             cb();
         })
     },
