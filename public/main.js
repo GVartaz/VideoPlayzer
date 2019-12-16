@@ -28,7 +28,7 @@ demoApp.controller('InscriptionController',function ($scope, $http){
             alert("Les mots de passe ne correspondent pas");
         }
         
-        else if(!agree.value){
+        else if(!agree.checked){
             alert("Veuillez cocher la case pour valider les termes")
         }
          else{
