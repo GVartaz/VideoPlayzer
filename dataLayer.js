@@ -90,6 +90,18 @@ var dataLayer = {
         })
     },
 
+    /*cherche dans la base de données les videos en rapport avec l'id
+      Renvoie la liste de toutes les videos 
+    getVideos : function ( id){
+        ObjectID = require('mongodb').ObjectID;
+        var ident = {
+            _id : new ObjectID(id)
+        };
+        db.collection("Videos").findOne(ident,function(err,docs){
+            cb(docs);
+        })
+    },*/
+
     getTask : function(id,cb){
         ObjectID = require('mongodb').ObjectID;
         var ident = {

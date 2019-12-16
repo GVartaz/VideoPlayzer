@@ -131,6 +131,24 @@ app.post("/addFav/:id",function(req,res){
         res.send(err);
     })
 })
+/*on recupere l'id des vidéos, on cherche dans la base de donnée les videos en rapport avec l'user
+et on appelle youtube avec l'id des videos, on les renvoie  
+app.get("/Fav/:id",function(req,res){
+    var user = req.session.user;
+    var list;
+    dataLayer.getVideos(user,function(data){
+        list = data;
+    })
+    Youtube.getVideoById(list).then(function(video) {
+        dataLayer.insertVideo(Youtube.normalize(video,user._id),function(){
+            res.send(user);
+        })
+    }).catch(function (err) {
+        res.send(err);
+    })
+})
+
+*/
 
 app.get("/getTaskSet",function(req,res){
     var user = req.session.logUser;

@@ -121,6 +121,13 @@ demoApp.controller('FavController',function($scope,$http,$sce){
             $scope.videoSet = resp.data.videos.results;
         })
     }
+    /**Fonction qui affiche la list des favoris 
+    $scope.getList = function(){
+        $http.post('/favorites',$scope.formVideo).then(function(resp){
+            console.log(resp.data.videos);
+            $scope.videoSet = resp.data.videos.results;
+        })
+    }*/
 
 });
 
