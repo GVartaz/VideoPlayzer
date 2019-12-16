@@ -95,6 +95,20 @@ demoApp.controller('SearchController',function($scope,$http,$sce){
 
 });
 
+demoApp.controller('FavController',function($scope,$http,$sce){
+    $scope.formVideo = {};
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+    }
+    $scope.createList = function (){
+        $http.post('/favorites',$scope.formVideo).then(function(resp){
+            console.log(resp.data.videos);
+            $scope.videoSet = resp.data.videos.results;
+        })
+    }
+
+});
+
 demoApp.controller('MainController',function ($scope, $http){
 
     $scope.formListe = {};

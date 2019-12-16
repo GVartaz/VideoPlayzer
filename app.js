@@ -1,5 +1,5 @@
 var dataLayer = require('./dataLayer.js');
-
+var dataLayerVideos = require('./server/dataLayerVideos.js');
 var express = require('express');
 var session = require('express-session');
 const app = express();
@@ -30,6 +30,30 @@ dataLayer.init(function(){
 });
 
 app.post("/search", function(req, res){
+    var that = this;
+    //get param
+    var slug;
+
+    try {
+        slug = req.body.search;
+
+        if (!slug) throw "";
+    } catch (e) {
+        res.send("MISSING_PARAMS");
+        return;
+    }
+
+    //slug = this.deslugify(slug);
+
+    Youtube.search(slug.toString().toLowerCase(),10).then(function (data) {
+        res.send({videos : data})
+    }).catch(function (err) {
+        res.send(err);
+    })
+
+});
+
+app.post("/favorites", function(req, res){
     var that = this;
     //get param
     var slug;

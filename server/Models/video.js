@@ -7,7 +7,7 @@ class Video {
         that.collection = collection;
     }
 
-    createVideo(userID, playlistID, channelId, channelTitle, description, videoId, link, trustlink, publishedAt, thumbnails, title, brand) {
+    createVideo(userID, playlistID, channelId, channelTitle, description, videoId, link, trustlink, publishedAt, thumbnails, title, embedurl, brand) {
         const that = this;
         const Video = {
             userID: userID,
@@ -21,6 +21,7 @@ class Video {
             publishedAt: publishedAt,
             thumbnails: thumbnails,
             title: title,
+            embedurl: embedurl,
             brand: brand
         };
         return that.collection.insertOne(Video);
