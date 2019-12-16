@@ -76,11 +76,14 @@ app.post("/logout",function(req,res){
 
 app.post("/addUser",function(req,res){
     var user = {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         login : req.body.login,
         pwd : req.body.pwd
     };
     dataLayer.getLogin(user.login,function(data){
         if(data == null) {
+            console.log(user);
             dataLayer.createUser(user,function(){
                 res.send({success:true});
             });
