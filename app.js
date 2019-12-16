@@ -78,13 +78,13 @@ app.post("/favorites", function(req, res){
 });
 
 app.post("/connexion",function(req,res){
-    req.session.logUser = req.body.login;
     var user = {
         login : req.body.login,
         pwd : req.body.pwd
     };
     dataLayer.getUser(user,function(data){
         if(data != null) {
+            req.session.user = data;
             res.send(data);
         } else {
             res.send(false);
@@ -93,8 +93,13 @@ app.post("/connexion",function(req,res){
     });
 })
 
+app.get("/getUser",function(req,res){
+    var user = req.session.user;
+    res.send(user);
+})
+
 app.post("/logout",function(req,res){
-    req.session.logUser = "";
+    req.session.user = {};
     res.send({success:true});
 });
 
@@ -107,7 +112,6 @@ app.post("/addUser",function(req,res){
     };
     dataLayer.getLogin(user.login,function(data){
         if(data == null) {
-            console.log(user);
             dataLayer.createUser(user,function(){
                 res.send({success:true});
             });

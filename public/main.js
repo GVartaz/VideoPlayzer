@@ -7,8 +7,6 @@ demoApp.controller('InscriptionController',function ($scope, $http){
     $scope.formLogin = {};
 
     $scope.createUser = function(){
-        var firstName = document.getElementById("firstname");
-        var lastname = document.getElementById("lastname");
         var login = document.getElementById("adresse");
         var pwd = document.getElementById("password");
         var confirmPsw = document.getElementById("confirmed_password");
@@ -73,7 +71,7 @@ demoApp.controller('LoginController',function ($scope, $http){
                     pwd.value = "";
                 } else {
                     $scope.formLogin = {};
-                    window.location.href = "./favorites.html";
+                    window.location.href = "./search.html";
                     alert("Connexion réussie");
                 }
             });
@@ -82,7 +80,7 @@ demoApp.controller('LoginController',function ($scope, $http){
 });
 
 demoApp.controller('SearchController',function($scope,$http,$sce){
-    $scope.formVideo = {};
+    $scope.formVideo = {}; 
     $scope.trustSrc = function(src) {
         return $sce.trustAsResourceUrl(src);
     }
@@ -92,6 +90,17 @@ demoApp.controller('SearchController',function($scope,$http,$sce){
             $scope.videoSet = resp.data.videos.results;
         })
     }
+
+    $http.get('/getUser').then(function(resp){
+        $scope.user = resp.data;
+    });
+
+    $scope.logout = function (){
+        $http.post('/logout',$scope.formLogin).then(function(resp){
+            $scope.formLogin = {};
+            window.location.href = "./index.html";
+        }
+    )};
 
 });
 
@@ -203,11 +212,6 @@ demoApp.controller('MainController',function ($scope, $http){
         }
     )};
 
-    $scope.logout = function (){
-        $http.post('/logout',$scope.formLogin).then(function(resp){
-            $scope.formLogin = {};
-            window.location.href = "./index.html";
-        }
-    )};
+    
 
 });
