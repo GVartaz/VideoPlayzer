@@ -7,15 +7,31 @@ demoApp.controller('InscriptionController',function ($scope, $http){
     $scope.formLogin = {};
 
     $scope.createUser = function(){
-        var login = document.getElementById("login");
+        var firstName = document.getElementById("firstname");
+        var lastname = document.getElementById("lastname");
+        var login = document.getElementById("adresse");
         var pwd = document.getElementById("password");
+        var confirmPsw = document.getElementById("confirmed_password");
+        var agree = document.getElementById("agreement");
         if(login.value == ""){
             login.style.borderColor = "#FF0000";
         }
-        if(pwd.value == ""){
+        else if(login.value.indexOf("@") == -1){
+            login.style.bordercolor = "#FF0000";
+            alert("Adresse invalide");
+        }
+        else if(pwd.value == ""){
             pwd.style.borderColor = "#FF0000";
         }
-        if(login.value != "" && pwd.value != "" ){
+        else if(pwd.value != confirmPsw.value){
+            confirmPsw.style.borderColor = "#FF0000";
+            alert("Les mots de passe ne correspondent pas");
+        }
+        
+        else if(!agree.value){
+            alert("Veuillez cocher la case pour valider les termes")
+        }
+         else{
             login.style.borderColor = null;
             pwd.style.borderColor = null;
             $http.post('/addUser',$scope.formLogin).then(function(resp){
