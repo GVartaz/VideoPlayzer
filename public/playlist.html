@@ -31,7 +31,7 @@
                     <button ng-click="openPlaylist(x._id)"><h2>{{x.name}}</h2></button>
                 </td>
                 <td>
-                    <button id="del-liste" class="btn btn-danger" ng-click="deletePlaylist(x.id)"> x </button>
+                    <button id="del-liste" class="btn btn-danger" ng-click="deletePlaylist(x._id)"> x </button>
                 </td>
             </tr>
         </table>
@@ -49,13 +49,16 @@
             </tr>
             <tr ng-repeat="v in videoSet">
                 <td>
-                    <h3>{{v.title}}</h3>
+                    <img ng-click="open(v.id)" width="{{v.miniatureWidth}}" height="{{v.miniatureHeight}}" ng-src="{{v.miniatureUrl}}">
                 </td>
                 <td>
-                    <i>{{v.channelTitle}}</i>
+                    <a ng-click="open(v.id)"><h5>{{v.title}}</h5></a>
                 </td>
                 <td>
-                    <button id="del-liste" class="btn btn-danger" ng-click="deleteFromPlaylist(v.id)"> x </button>
+                    <i>{{v.channel}}</i>
+                </td>
+                <td>
+                    <button id="del-liste" class="btn btn-danger" ng-click="deleteFromPlaylist(v._id)"> x </button>
                 </td>
             </tr>
         </table>

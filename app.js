@@ -217,6 +217,32 @@ app.post("/openPlaylist/:id",function(req,res){
     })
 })
 
+app.delete("/deletePlaylist/:id",function(req,res){
+    var id = req.params.id;
+        dataLayer.deleteVideosFromPlaylist(id,function(){
+            dataLayer.deletePlaylist(id,function(){
+                dataLayer.getPlaylistSet(user,function(data){
+                    res.send(data);
+                });
+            });
+        });
+})
+
+app.delete("/deleteFromPlaylist/:id",function(req,res){
+    var id = req.params.id;
+    dataLayer.getVideoSetVideo(id,function(data){
+        data = data[0]._id;
+        dataLayer.deleteVideoFromPlaylist(data,function(){
+            dataLayer.getVideoSetPlaylist(id,function(data){
+                var liste = data;
+                dataLayer.getVideosById(liste,function(data){
+                    res.send(data);
+                })
+            })
+        })
+    })
+})
+
 app.post("/addTask",function(req,res){
     var task = {
         text : req.body.text,

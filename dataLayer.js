@@ -49,17 +49,15 @@ var dataLayer = {
 
     getVideosById : function(liste,cb){
         ObjectID = require('mongodb').ObjectID;
-        var listes = [];
+        var ids = [];
         liste.forEach(function(item){
-            cpt++;
-            var ident = {
-                _id : new ObjectID(item['video'])
-            };
-            db.collection("Videos").findOne(ident,function(err,docs){
-                listes.push(docs);
-            })
+            ids.push(new ObjectID(item.video));
         })
-        cb(listes);
+        //})
+        //cb(listes);*/
+        db.collection("Videos").find({"_id" : {$in: ids}}).toArray(function(err,docs) {
+            cb(docs);
+        });
     },
 
     insertPlaylist : function(list,cb){
@@ -90,6 +88,27 @@ var dataLayer = {
             _id : new ObjectID(id)
         };
         db.collection("Playlist").deleteOne(ident,function(err,result){
+            cb();
+        })
+    },
+
+    getVideoSetVideo : function(video,cb){
+        db.collection("VideoPlaylist").find({"video" :video}).toArray(function(err,docs){
+            cb(docs);
+        })
+    },
+
+    deleteVideoFromPlaylist : function(id,cb){
+        var ident = {
+            _id : id
+        }
+        db.collection("VideoPlaylist").deleteOne(ident,function(err,result){
+            cb();
+        })
+    },
+
+    deleteVideosFromPlaylist : function(playlist,cb){
+        db.collection("VideoPlaylist").deleteMany({"playlist": playlist},function(err,result){
             cb();
         })
     },
