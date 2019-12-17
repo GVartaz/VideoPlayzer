@@ -185,7 +185,6 @@ demoApp.controller('PlaylistController',function ($scope, $http){
     $scope.openPlaylist = function(id){
         $http.post('/openPlaylist/'+id).then(function(resp){
             document.getElementById("videoPlaylist").style.display = "block";
-            console.log(resp.data);
             $scope.videoSet = resp.data;
         })
     }
@@ -194,6 +193,24 @@ demoApp.controller('PlaylistController',function ($scope, $http){
         $scope.playlistSet = resp.data.playlistSet;
         $scope.user = resp.data.user;
     });
+
+    $scope.open = function (id){
+        $http.post('/open/'+id).then(function(resp){
+            window.location.href = "./play.html";
+        })
+    }
+
+    $scope.deletePlaylist = function(id){
+        $http.delete('/deletePlaylist/'+id).then(function(resp){
+            $scope.playlistSet = resp.data.playlistSet;
+        })
+    }
+
+    $scope.deleteFromPlaylist = function(id){
+        $http.delete('/deleteFromPlaylist/'+id).then(function(resp){
+            $scope.videoSet = resp.data;
+        })
+    }
 
 });
 
