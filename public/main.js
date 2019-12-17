@@ -114,12 +114,25 @@ demoApp.controller('SearchController',function($scope,$http){
 
 });
 
-demoApp.controller('MainController',function ($scope, $http){
+demoApp.controller('PlayController',function ($scope, $http){
 
     $http.get('/play').then(function(resp){
         $scope.video = resp.data.video;
         $scope.user = resp.data.user;
     })
+
+});
+
+demoApp.controller('FavController',function($scope,$http,$sce){
+    $scope.formVideo = {};
+    
+    /**Fonction qui affiche la list des favoris 
+    $scope.getList = function(){
+        $http.post('/favorites',$scope.formVideo).then(function(resp){
+            console.log(resp.data.videos);
+            $scope.videoSet = resp.data.videos.results;
+        })
+    }*/
 
 });
 
