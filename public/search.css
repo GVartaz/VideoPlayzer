@@ -28,6 +28,20 @@ center h1 img{
     height: 30px;
 }
 
+#videos{
+    padding: 0% 5%;
+    border-collapse:separate; 
+    border-spacing:0 25px;
+}
+
+#videos tr{
+    padding-bottom: 3%;
+}
+
+#infos{
+    padding: 0% 5%;
+}
+
 #liste{
     margin-top: 10px;
     margin-bottom: 10px;

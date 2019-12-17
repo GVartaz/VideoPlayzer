@@ -22,9 +22,6 @@ class Youtube {
             searchYT(keyWords, opts).then(function (results) {
                 results.results.map(function (video) {
                     video.brand = "Youtube";
-                    video.miniatureUrl = video.thumbnails.medium.url;
-                    video.miniatureWidth = video.thumbnails.medium.width;
-                    video.miniatureHeight = video.thumbnails.medium.height;
                     video.embedurl = "http://www.youtube.com/embed/"+video.id;
                 });
                 resolve(results);

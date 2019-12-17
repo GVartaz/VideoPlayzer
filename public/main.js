@@ -79,11 +79,9 @@ demoApp.controller('LoginController',function ($scope, $http){
     };
 });
 
-demoApp.controller('SearchController',function($scope,$http,$sce){
-    $scope.formVideo = {}; 
-    $scope.trustSrc = function(src) {
-        return $sce.trustAsResourceUrl(src);
-    }
+demoApp.controller('SearchController',function($scope,$http){
+    $scope.formVideo = {};
+
     $scope.createList = function (){
         $http.post('/search',$scope.formVideo).then(function(resp){
             console.log(resp.data.videos);
@@ -94,6 +92,12 @@ demoApp.controller('SearchController',function($scope,$http,$sce){
     $http.get('/getUser').then(function(resp){
         $scope.user = resp.data;
     });
+
+    $scope.open = function (id){
+        $http.post('/open/'+id).then(function(resp){
+            window.location.href = "./play.html";
+        })
+    }
 
     $scope.logout = function (){
         $http.post('/logout',$scope.formLogin).then(function(resp){
@@ -110,17 +114,12 @@ demoApp.controller('SearchController',function($scope,$http,$sce){
 
 });
 
-demoApp.controller('FavController',function($scope,$http,$sce){
-    $scope.formVideo = {};
-    $scope.trustSrc = function(src) {
-        return $sce.trustAsResourceUrl(src);
-    }
-    $scope.createList = function (){
-        $http.post('/favorites',$scope.formVideo).then(function(resp){
-            console.log(resp.data.videos);
-            $scope.videoSet = resp.data.videos.results;
-        })
-    }
+demoApp.controller('MainController',function ($scope, $http){
+
+    $http.get('/play').then(function(resp){
+        $scope.video = resp.data.video;
+        $scope.user = resp.data.user;
+    })
 
 });
 

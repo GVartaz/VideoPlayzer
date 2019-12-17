@@ -27,16 +27,21 @@
                     </form>
                 </center>
             </div>
-            <table>
+            <table id="videos">
                 <tr ng-repeat="x in videoSet">
                     <td>
-                        <img width="x.thumbnails.medium.width" height="x.thumbnails.medium.height" ng-src="{{trustSrc(x.thumbnails.medium.url)}}">
-                        <div id="infosVideo">
-                            <b>{{x.title}}</b>
-                            <button ng-if="user._id" ng-click="addFav(x.id)">☆</button>
-                            <br>
-                            <i>par {{x.channelTitle}}</i>
-                        </div>
+                        <img ng-click="open(x.id)" width="{{x.thumbnails.medium.width}}" height="{{x.thumbnails.medium.height}}" ng-src="{{x.thumbnails.medium.url}}">
+                    </td>
+                    <td id="infos">
+                        <a ng-click="open(x.id)"><b>{{x.title}}</b></a>
+                        <button ng-if="user._id" ng-click="addFav(x.id)">☆</button>
+                        <br>
+                        <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
+                        <br>
+                        {{x.description}}
+                    </td>
+                    <td>
+                        {{x.brand}}
                     </td>
                 </tr>
             </table>  

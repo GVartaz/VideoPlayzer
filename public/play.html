@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr" ng-app="demoApp">
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="icon.ico" />
+        <title>VideoPlayzer</title>
+        <script src="angular.min.js"></script>
+        <script src="main.js"></script>
+        <link href="login.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body ng-controller="PlayController">
+        <div id="entete">
+            <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <center><h1><img src="img/logo.png" alt="Logo Todo" width="2%" height="2%">Video Playzer</h1></center>
+        </div>
+        <br/> 
+        <center>
+            <iframe width="820" height="500" ng-src="{{trustSrc(x.embedurl)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <br>
+            <button ng-if="user._id" ng-click="addFav(x.id)">☆</button>
+            <br>
+            <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
+            <br>
+            {{x.description}}
+            {{x.brand}}
+        </center>
+        <p id="footer">
+            <i>
+                Projet Sécurisation des Systèmes de SI - Polytech Marseille
+                <br>
+                Copyright © Geoffrey VARTAZIAN Thomas MARTINEZ 2019
+            </i>
+        </p>
+    </body>
+</html>

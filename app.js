@@ -98,6 +98,10 @@ app.get("/getUser",function(req,res){
     res.send(user);
 })
 
+/*app.get("/play",function(req,res){
+    res.send({user: req.session.user,video: req.session.video});
+})*/
+
 app.post("/logout",function(req,res){
     req.session.user = {};
     res.send({success:true});
@@ -131,6 +135,16 @@ app.post("/addFav/:id",function(req,res){
         res.send(err);
     })
 })
+/*
+app.post("/open/:id",function(req,res){
+    var u = req.session.user;
+    Youtube.getVideoById(req.params.id).then(function(video) {
+        req.session.video = Youtube.normalize(video,null);
+        res.send(u);
+    }).catch(function (err) {
+        res.send(err);
+    })
+})*/
 
 app.get("/getTaskSet",function(req,res){
     var user = req.session.logUser;
