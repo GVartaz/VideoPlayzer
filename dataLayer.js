@@ -92,13 +92,8 @@ var dataLayer = {
 
     /*cherche dans la base de données les videos en rapport avec l'id
       Renvoie la liste de toutes les videos */
-    getVideos : function ( id,cb){
-        ObjectID = require('mongodb').ObjectID;
-        var ident = {
-            _id : new ObjectID(id)
-        };
-        db.collection("Videos").find({"user": ident}).toArray(function(err,docs){
-            console.log(docs);
+    getVideos : function (id,cb){
+        db.collection("Videos").find({"user": id}).toArray(function(err,docs){
             cb(docs);
         })
     },
