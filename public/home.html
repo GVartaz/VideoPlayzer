@@ -14,6 +14,9 @@
             <center><h1><img src="img/logo.png" alt="Logo Todo">VideoPlayzer</h1></center>
         </div>
         <div id="contenu">
+            <div id ="button favorite" style="position: relative; float: left;">
+                <button>★</button>
+            </div>
             <div id="list-form">
                 <center>
                     <form>
@@ -32,7 +35,7 @@
                         <iframe width="560" height="315" ng-src="{{trustSrc(x.embedurl)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div id="infosVideo">
                             <b>{{x.title}}</b>
-                            <button >★</button>
+                            <button >+</button>
                             <br>
                             <i>par {{x.channelTitle}}</i>
                         </div>

@@ -28,13 +28,13 @@ center h1 img{
     height: 30px;
 }
 
-#videos{
+table {
     padding: 0% 5%;
     border-collapse:separate; 
     border-spacing:0 25px;
 }
 
-#videos tr{
+table tr{
     padding-bottom: 3%;
 }
 

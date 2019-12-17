@@ -15,6 +15,9 @@
         </div>
         <div id="contenu">
             <h2>Bienvenue {{user.firstname}}!</h2>
+            <div id="list-form" style="position: relative; float: left;">
+                <button ng-if="user._id" ng-click="showFavorite()">☆</button>
+            </div>
             <div id="list-form">
                 <center>
                     <form>
@@ -31,7 +34,7 @@
                 <table id="favorites">
                     <tr ng-repeat="x in favoriteSet">
                         <td>
-                            <img ng-click="open(x.id)" width="{{x.thumbnails.medium.width}}" height="{{x.thumbnails.medium.height}}" ng-src="{{x.thumbnails.medium.url}}">
+                            <img ng-click="open(x.id)" width="{{x.miniatureWidth}}" height="{{x.miniatureHeight}}" ng-src="{{x.miniatureUrl}}">
                         </td>
                         <td id="infos">
                             <a ng-click="open(x.id)"><b>{{x.title}}</b></a>
@@ -54,7 +57,7 @@
                     </td>
                     <td id="infos">
                         <a ng-click="open(x.id)"><b>{{x.title}}</b></a>
-                        <button ng-if="user._id" ng-click="addFav(x.id)">☆</button>
+                        <button ng-if="user._id" ng-click="addFav(x.id)">+</button>
                         <br>
                         <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
                         <br>

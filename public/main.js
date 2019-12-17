@@ -83,6 +83,7 @@ demoApp.controller('SearchController',function($scope,$http){
     $scope.formVideo = {};
 
     $scope.createList = function (){
+        document.getElementById("videos").style.display = "block";
         $http.post('/search',$scope.formVideo).then(function(resp){
             console.log(resp.data.videos);
             $scope.videoSet = resp.data.videos.results;
@@ -90,9 +91,14 @@ demoApp.controller('SearchController',function($scope,$http){
         })
     }
 
+    $scope.showFavorite = function(){
+        document.getElementById("videos").style.display = "none";
+        document.getElementById("favorites").style.display = "block";
+    }
+
      /**Fonction qui affiche la list des favoris*/ 
         $http.get('/favorites').then(function(resp){
-            console.log(resp.data.videos);
+            console.log(resp.data);
             $scope.favoriteSet = resp.data;
         })
     
@@ -118,6 +124,7 @@ demoApp.controller('SearchController',function($scope,$http){
         $http.post('/addFav/'+id).then(function(resp){
             $scope.user = resp.data;
         })
+        this.showFavorite();
     }
 
 });
