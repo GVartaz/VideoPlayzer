@@ -27,6 +27,26 @@
                     </form>
                 </center>
             </div>
+            <div ng-if="user._id">
+                <table id="favorites">
+                    <tr ng-repeat="x in favoriteSet">
+                        <td>
+                            <img ng-click="open(x.id)" width="{{x.thumbnails.medium.width}}" height="{{x.thumbnails.medium.height}}" ng-src="{{x.thumbnails.medium.url}}">
+                        </td>
+                        <td id="infos">
+                            <a ng-click="open(x.id)"><b>{{x.title}}</b></a>
+                            <br>
+                            <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
+                            <br>
+                            {{x.description}}
+                        </td>
+                        <td>
+                            {{x.brand}}
+                        </td>
+                    </tr>
+                    
+                </table>  
+            </div>
             <table id="videos">
                 <tr ng-repeat="x in videoSet">
                     <td>
@@ -44,6 +64,7 @@
                         {{x.brand}}
                     </td>
                 </tr>
+                
             </table>  
         </div>
         <p id="footer">

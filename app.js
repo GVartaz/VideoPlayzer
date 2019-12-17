@@ -146,23 +146,16 @@ app.post("/open/:id",function(req,res){
     })
 })*/
 /*on recupere l'id des vidéos, on cherche dans la base de donnée les videos en rapport avec l'user
-et on appelle youtube avec l'id des videos, on les renvoie  
-app.get("/Fav/:id",function(req,res){
-    var user = req.session.user;
-    var list;
+et on appelle youtube avec l'id des videos, on les renvoie */ 
+app.get("/favorites",function(req,res){
+    var user = req.session.user._id;
+    
     dataLayer.getVideos(user,function(data){
-        list = data;
-    })
-    Youtube.getVideoById(list).then(function(video) {
-        dataLayer.insertVideo(Youtube.normalize(video,user._id),function(){
-            res.send(user);
-        })
-    }).catch(function (err) {
-        res.send(err);
+        res.send(data);
     })
 })
 
-*/
+
 
 app.get("/getTaskSet",function(req,res){
     var user = req.session.logUser;
