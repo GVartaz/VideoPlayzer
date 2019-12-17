@@ -158,6 +158,13 @@ app.get("/favorites",function(req,res){
 })
 
 
+app.delete("/deleteFav/:id",function(req,res){
+    var id = req.params.id;
+    dataLayer.deleteFav(id,function(){
+        res.send(req.session.user);
+    })
+})
+
 
 app.get("/getTaskSet",function(req,res){
     var user = req.session.logUser;

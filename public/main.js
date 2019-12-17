@@ -119,6 +119,13 @@ demoApp.controller('SearchController',function($scope,$http){
         })
     }
 
+    $scope.deleteFav = function (id){
+        $http.delete('/deleteFav/'+id).then(function(resp){
+            $scope.user = resp.data;
+            window.location.reload();
+        }
+    )};
+
 });
 
 demoApp.controller('PlayController',function ($scope, $http,$sce){
