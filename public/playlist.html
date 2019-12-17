@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr" ng-app="demoApp">
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="icon.ico" />
+        <title>VideoPlayzer</title>
+        <script src="angular.min.js"></script>
+        <script src="main.js"></script>
+        <link href="tasks.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body ng-controller="PlaylistController">
+        <div id="entete">
+            <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <center><h1><img src="img/logo.png" alt="Logo Todo" width="2%" height="2%">Video Playzer</h1></center>
+        </div>
+        <br/> 
+        <div id="list-form">
+            <form>
+                <h5>Nouvelle Playlist : </h5>
+                <input type="text" required="" id="newListe" placeholder="Nom de la liste" ng-model="formListe.name">
+                <button type="submit" class="btn btn-success" ng-click="createPlaylist()">Créer</button>
+                <p id="liste-warning"></p>
+            </form>
+        </div>
+        <table>
+            <tr ng-repeat="x in playlistSet">
+                <td>
+                    <button ng-click="openPlaylist(x._id)"><h2>{{x.name}}</h2></button>
+                </td>
+                <td>
+                    <button id="del-liste" class="btn btn-danger" ng-click="deletePlaylist(x.id)"> x </button>
+                </td>
+            </tr>
+        </table>
+        <table id="videoPlaylist" style="display: none;">
+            <tr>
+                <td>
+                    <h2>Titre</h2>
+                </td>
+                <td>
+                    <h2>Auteur</h2>
+                </td>
+                <td>
+                    <h2>Action</h2>
+                </td>
+            </tr>
+            <tr ng-repeat="v in videoSet">
+                <td>
+                    <h3>{{v.title}}</h3>
+                </td>
+                <td>
+                    <i>{{v.channelTitle}}</i>
+                </td>
+                <td>
+                    <button id="del-liste" class="btn btn-danger" ng-click="deleteFromPlaylist(v.id)"> x </button>
+                </td>
+            </tr>
+        </table>
+        <p id="footer">
+            <i>
+                Projet Sécurisation des Systèmes de SI - Polytech Marseille
+                <br>
+                Copyright © Geoffrey VARTAZIAN Thomas MARTINEZ 2019
+            </i>
+        </p>
+    </body>
+</html>

@@ -98,10 +98,6 @@ demoApp.controller('SearchController',function($scope,$http){
 
      /**Fonction qui affiche la list des favoris*/ 
         $http.get('/favorites').then(function(resp){
-<<<<<<< HEAD
-            console.log(resp.data);
-=======
->>>>>>> 6bda9305f3e32a0b201f9d477292faf6caeba01b
             $scope.favoriteSet = resp.data;
         })
     
@@ -127,6 +123,7 @@ demoApp.controller('SearchController',function($scope,$http){
         $http.post('/addFav/'+id).then(function(resp){
             $scope.user = resp.data;
         })
+        window.location.reload();
         this.showFavorite();
     }
 
@@ -156,6 +153,47 @@ demoApp.controller('PlayController',function ($scope, $http,$sce){
             window.location.href = "./index.html";
         }
     )};
+
+});
+
+demoApp.controller('PlaylistController',function ($scope, $http){
+
+    $scope.logout = function (){
+        $http.post('/logout',$scope.formLogin).then(function(resp){
+            $scope.formLogin = {};
+            window.location.href = "./index.html";
+        }
+    )};
+
+    $scope.createPlaylist = function (){
+        if(document.getElementById("newListe").value == "") {
+            document.getElementById("liste-warning").innerHTML = "Vous devez donner un nom à votre liste";
+        } else {
+            document.getElementById("liste-warning").innerHTML = "";
+            $http.post('/addPlaylist',$scope.formListe).then(function(resp){
+                $scope.formListe = {};
+                if(resp.data == true){
+                    window.location.reload();
+                } else {
+                    document.getElementById("liste-warning").innerHTML = "Erreur lors de l'ajout";
+                }
+                
+            });
+        }
+    };
+    
+    $scope.openPlaylist = function(id){
+        $http.post('/openPlaylist/'+id).then(function(resp){
+            document.getElementById("videoPlaylist").style.display = "block";
+            console.log(resp.data);
+            $scope.videoSet = resp.data;
+        })
+    }
+
+    $http.get('/getPlaylistSet').then(function(resp){
+        $scope.playlistSet = resp.data.playlistSet;
+        $scope.user = resp.data.user;
+    });
 
 });
 

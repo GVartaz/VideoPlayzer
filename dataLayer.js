@@ -34,35 +34,56 @@ var dataLayer = {
         })
     },
 
-    getListSet : function(login,cb){
+    getPlaylistSet : function(user,cb){
 
-        db.collection("List").find({"auteur" : login}).toArray(function(err,docs) {
+        db.collection("Playlist").find({"auteur" : user}).toArray(function(err,docs) {
             cb(docs);
         });
     },
 
-    insertList : function(list,cb){
-        db.collection("List").insertOne(list,function(err,result){
-            cb();
-        })
-    },
-
-    getList : function(id,cb){
-        ObjectID = require('mongodb').ObjectID;
-        var ident = {
-            _id : new ObjectID(id)
-        };
-        db.collection("List").findOne(ident,function(err,docs){
+    getVideoSetPlaylist : function(playlist,cb){
+        db.collection("VideoPlaylist").find({"playlist" :playlist}).toArray(function(err,docs){
             cb(docs);
         })
     },
 
-    deleteList : function(id,cb){
+    getVideosById : function(liste,cb){
+        ObjectID = require('mongodb').ObjectID;
+        var listes = [];
+        liste.forEach(function(item){
+            cpt++;
+            var ident = {
+                _id : new ObjectID(item['video'])
+            };
+            db.collection("Videos").findOne(ident,function(err,docs){
+                listes.push(docs);
+            })
+        })
+        cb(listes);
+    },
+
+    insertPlaylist : function(list,cb){
+        db.collection("Playlist").insertOne(list,function(err,result){
+            cb();
+        })
+    },
+
+    getPlaylist : function(id,cb){
         ObjectID = require('mongodb').ObjectID;
         var ident = {
             _id : new ObjectID(id)
         };
-        db.collection("List").deleteOne(ident,function(err,result){
+        db.collection("Playlist").findOne(ident,function(err,docs){
+            cb(docs);
+        })
+    },
+
+    deletePlaylist : function(id,cb){
+        ObjectID = require('mongodb').ObjectID;
+        var ident = {
+            _id : new ObjectID(id)
+        };
+        db.collection("Playlist").deleteOne(ident,function(err,result){
             cb();
         })
     },
