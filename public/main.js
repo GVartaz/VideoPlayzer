@@ -133,6 +133,13 @@ demoApp.controller('SearchController',function($scope,$http){
         this.showFavorite();
     }
 
+    $scope.videoToPlaylist = function(id,id_select){
+         var Indata = {'id':id, 'id_select':id_select}
+         $http.post('/addVideoToPlaylist/'+Indata)
+         .then(function(resp){
+         })
+    }
+
     $scope.deleteFav = function (id){
         $http.delete('/deleteFav/'+id).then(function(resp){
             $scope.user = resp.data;

@@ -138,6 +138,17 @@ app.post("/addFav/:id",function(req,res){
     })
 })
 
+app.post("/addVideoToPlaylist/:Indata",function(req,res){
+        var objet = {
+            video : req.params.Indata.id,
+            playlist: req.params.Indata.id_select
+        };
+        dataLayer.insertVideoToPlaylist(objet,function(){
+            res.send(true);
+        
+    })
+})
+
 app.post("/open/:id",function(req,res){
     var u = req.session.user;
     Youtube.getVideoById(req.params.id).then(function(video) {

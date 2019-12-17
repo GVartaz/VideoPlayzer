@@ -66,6 +66,12 @@ var dataLayer = {
         })
     },
 
+    insertVideoToPlaylist: function (object,cb){
+        db.collection("VideoPlaylist").insertOne(object,function(err,result){
+            cb();
+        })
+    },
+
     getPlaylist : function(id,cb){
         ObjectID = require('mongodb').ObjectID;
         var ident = {
