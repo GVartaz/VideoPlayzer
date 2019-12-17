@@ -98,9 +98,11 @@ app.get("/getUser",function(req,res){
     res.send(user);
 })
 
-/*app.get("/play",function(req,res){
-    res.send({user: req.session.user,video: req.session.video});
-})*/
+app.get("/play",function(req,res){
+    var v = req.session.video;
+    req.session.video = {};
+    res.send({user: req.session.user,video: v});
+})
 
 app.post("/logout",function(req,res){
     req.session.user = {};
@@ -135,7 +137,7 @@ app.post("/addFav/:id",function(req,res){
         res.send(err);
     })
 })
-/*
+
 app.post("/open/:id",function(req,res){
     var u = req.session.user;
     Youtube.getVideoById(req.params.id).then(function(video) {
@@ -144,7 +146,7 @@ app.post("/open/:id",function(req,res){
     }).catch(function (err) {
         res.send(err);
     })
-})*/
+})
 /*on recupere l'id des vidéos, on cherche dans la base de donnée les videos en rapport avec l'user
 et on appelle youtube avec l'id des videos, on les renvoie */ 
 app.get("/favorites",function(req,res){
@@ -155,6 +157,13 @@ app.get("/favorites",function(req,res){
     })
 })
 
+
+app.delete("/deleteFav/:id",function(req,res){
+    var id = req.params.id;
+    dataLayer.deleteFav(id,function(){
+        res.send(req.session.user);
+    })
+})
 
 
 app.get("/getTaskSet",function(req,res){

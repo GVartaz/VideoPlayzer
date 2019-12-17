@@ -125,6 +125,12 @@ var dataLayer = {
         });           
     },
 
+    deleteFav : function(id,cb){
+        db.collection("Videos").deleteOne({"id":id},function(err,result){
+            cb();
+        })
+    },
+
     deleteTask : function(id,cb){
         ObjectID = require('mongodb').ObjectID;
         var ident = {

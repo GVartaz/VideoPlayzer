@@ -98,7 +98,10 @@ demoApp.controller('SearchController',function($scope,$http){
 
      /**Fonction qui affiche la list des favoris*/ 
         $http.get('/favorites').then(function(resp){
+<<<<<<< HEAD
             console.log(resp.data);
+=======
+>>>>>>> 6bda9305f3e32a0b201f9d477292faf6caeba01b
             $scope.favoriteSet = resp.data;
         })
     
@@ -127,14 +130,32 @@ demoApp.controller('SearchController',function($scope,$http){
         this.showFavorite();
     }
 
+    $scope.deleteFav = function (id){
+        $http.delete('/deleteFav/'+id).then(function(resp){
+            $scope.user = resp.data;
+            window.location.reload();
+        }
+    )};
+
 });
 
-demoApp.controller('PlayController',function ($scope, $http){
+demoApp.controller('PlayController',function ($scope, $http,$sce){
+
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+    }
 
     $http.get('/play').then(function(resp){
         $scope.video = resp.data.video;
         $scope.user = resp.data.user;
     })
+
+    $scope.logout = function (){
+        $http.post('/logout',$scope.formLogin).then(function(resp){
+            $scope.formLogin = {};
+            window.location.href = "./index.html";
+        }
+    )};
 
 });
 

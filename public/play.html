@@ -18,14 +18,16 @@
         </div>
         <br/> 
         <center>
-            <iframe width="820" height="500" ng-src="{{trustSrc(x.embedurl)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="820" height="500" ng-src="{{trustSrc(video.embedurl)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <br>
-            <button ng-if="user._id" ng-click="addFav(x.id)">☆</button>
+            <b>{{video.title}}</b>
+            <button ng-if="user._id" ng-click="addFav(video.id)">☆</button>
             <br>
-            <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
+            <i>par {{video.channelTitle}}</i> - {{video.publishedAt}}
             <br>
-            {{x.description}}
-            {{x.brand}}
+            {{video.description}}
+            <br>
+            {{video.brand}}
         </center>
         <p id="footer">
             <i>
