@@ -13,7 +13,8 @@
     </head>
     <body ng-controller="PlayController">
         <div id="entete">
-            <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <button ng-if="user._id" id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <button ng-if="!user._id" id="logout" class="btn btn-success" ng-click="login()">Connexion</button>
             <center><h1><img src="img/logo.png" alt="Logo Todo" width="2%" height="2%">Video Playzer</h1></center>
         </div>
         <br/> 

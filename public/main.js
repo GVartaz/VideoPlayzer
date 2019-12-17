@@ -91,6 +91,10 @@ demoApp.controller('SearchController',function($scope,$http){
         })
     }
 
+    $scope.login = function(){
+        window.location.href = "./index.html";
+    }
+
     $scope.showFavorite = function(){
         document.getElementById("videos").style.display = "none";
         document.getElementById("favorites").style.display = "block";
@@ -155,6 +159,10 @@ demoApp.controller('PlayController',function ($scope, $http,$sce){
             window.location.href = "./index.html";
         }
     )};
+
+    $scope.login = function(){
+        window.location.href = "./index.html";
+    }
 
 });
 

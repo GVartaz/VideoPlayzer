@@ -10,7 +10,8 @@
     </head>
     <body ng-controller="SearchController">
         <div id="entete" >
-            <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <button ng-if="user._id" id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <button ng-if="!user._id" id="logout" class="btn btn-success" ng-click="login()">Connexion</button>
             <center><h1><a href="/search.html"><img src="img/logo.png" alt="Logo Todo"></a>VideoPlayzer</h1></center>
         </div>
         <div id="contenu">
