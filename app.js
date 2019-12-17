@@ -177,21 +177,31 @@ app.get("/getTaskSet",function(req,res){
     });
 })
 
-app.post("/addList",function(req,res){
+app.get("/getPlaylistSet",function(req,res){
+    var user = req.session.user._id;
+    dataLayer.getPlaylistSet(user,function(data){
+        res.send({playlistSet: data,user: user});
+    });
+})
+
+app.post("/addPlaylist",function(req,res){
     var list = {
         name : req.body.name,
-        auteur : req.session.logUser
+        auteur : req.session.user._id
     };
-    dataLayer.insertList(list,function(){
-        var liste;
-        var user = req.session.logUser;
-        dataLayer.getListSet(user,function(data){
-            liste = data;
-            dataLayer.getTaskSet2(liste,user,function(data){
-                res.send({taskSet: data,listeSet: liste,user: user});
-            })
-        });
+    dataLayer.insertPlaylist(list,function(){
+        res.send(true);
     });
+})
+
+app.post("/openPlaylist/:id",function(req,res){
+    var id = req.params.id;
+    dataLayer.getVideoSetPlaylist(id,function(data){
+        var liste = data;
+        dataLayer.getVideosById(liste,function(data){
+            res.send(data);
+        })
+    })
 })
 
 app.post("/addTask",function(req,res){
