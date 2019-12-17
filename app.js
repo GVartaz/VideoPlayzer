@@ -151,10 +151,12 @@ app.post("/open/:id",function(req,res){
 et on appelle youtube avec l'id des videos, on les renvoie */ 
 app.get("/favorites",function(req,res){
     var user = req.session.user._id;
-    
-    dataLayer.getVideos(user,function(data){
-        res.send(data);
-    })
+    dataLayer.getPlaylistSet(user,function(data){
+        liste = data;
+        dataLayer.getVideos(user,function(data){
+            res.send({videos:data, playlists : liste});
+        })
+    });
 })
 
 

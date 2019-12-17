@@ -9,15 +9,15 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body ng-controller="SearchController">
-        <div id="entete">
+        <div id="entete" >
             <button id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
-            <center><h1><img src="img/logo.png" alt="Logo Todo">VideoPlayzer</h1></center>
+            <center><h1><a href="/search.html"><img src="img/logo.png" alt="Logo Todo"></a>VideoPlayzer</h1></center>
         </div>
         <div id="contenu">
             <h2>Bienvenue {{user.firstname}}!</h2>
             <div id="list-form" style="position: relative; float: left;">
                 <input type="button" ng-if="user._id" ng-click="showFavorite()" value="☆">
-                <input type="button" ng-if="user._id" href="/playlist.html" value="➔">
+                <input type="button" ng-if="user._id" onClick="self.location.href='playlist.html'" value="➔">
 
             </div>
             <div id="list-form">
@@ -50,8 +50,8 @@
                         </td>
                         <td>
                             <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
-                            <select ng-repeat="x in playlistSet" name="playlist" id="playlistSelect" size="4" >
-                                <option> {{x.value}}</option>
+                            <select name="playlist" id="playlistSelect" size="4" >
+                                <option ng-repeat="x in playlistSet" > {{x.name}}</optionng-repeat="x in playlistSet">
                             </select>
                             <input type="button" value="Add" onclick="videoToPlaylist()">
                         </td>
