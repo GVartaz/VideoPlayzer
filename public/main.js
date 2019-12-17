@@ -98,10 +98,6 @@ demoApp.controller('SearchController',function($scope,$http){
 
      /**Fonction qui affiche la list des favoris*/ 
         $http.get('/favorites').then(function(resp){
-<<<<<<< HEAD
-            console.log(resp.data);
-=======
->>>>>>> 6bda9305f3e32a0b201f9d477292faf6caeba01b
             $scope.favoriteSet = resp.data;
         })
     

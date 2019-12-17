@@ -16,7 +16,9 @@
         <div id="contenu">
             <h2>Bienvenue {{user.firstname}}!</h2>
             <div id="list-form" style="position: relative; float: left;">
-                <button ng-if="user._id" ng-click="showFavorite()">☆</button>
+                <input type="button" ng-if="user._id" ng-click="showFavorite()" value="☆">
+                <input type="button" ng-if="user._id" href="/playlist.html" value="➔">
+
             </div>
             <div id="list-form">
                 <center>
@@ -48,6 +50,10 @@
                         </td>
                         <td>
                             <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
+                            <select ng-repeat="x in playlistSet" name="playlist" id="playlistSelect" size="4" >
+                                <option> {{x.value}}</option>
+                            </select>
+                            <input type="button" value="Add" onclick="videoToPlaylist()">
                         </td>
                     </tr>
                     

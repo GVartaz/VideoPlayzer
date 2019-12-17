@@ -15,7 +15,9 @@
         </div>
         <div id="contenu">
             <div id ="button favorite" style="position: relative; float: left;">
-                <button>★</button>
+                <input type="button" ng-if="user._id" ng-click="showFavorite()" value="☆">
+                <input type="button" ng-if="user._id" href="/playlist.html" value="➔">
+
             </div>
             <div id="list-form">
                 <center>
