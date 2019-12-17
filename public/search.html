@@ -51,9 +51,9 @@
                         <td>
                             <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
                             <select name="playlist" id="playlistSelect" size="4" >
-                                <option ng-repeat="x in playlistSet" > {{x.name}}</optionng-repeat="x in playlistSet">
+                                <option ng-repeat="y in playlistSet" > {{y.name}}</optionng-repeat="y in playlistSet">
                             </select>
-                            <input type="button" value="Add" onclick="videoToPlaylist()">
+                            <input type="button" value="Add" ng-click="videoToPlaylist(x.id,y.id)">
                         </td>
                     </tr>
                     
