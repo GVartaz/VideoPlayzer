@@ -97,9 +97,11 @@ demoApp.controller('SearchController',function($scope,$http){
     }
 
      /**Fonction qui affiche la list des favoris*/ 
-        $http.get('/favorites').then(function(resp){
-            $scope.favoriteSet = resp.data;
-        })
+    $http.get('/favorites').then(function(resp){
+        console.log(resp.data);
+        $scope.favoriteSet = resp.data.videos;
+        $scope.playlistSet = resp.data.playlists;
+    })
     
 
     $http.get('/getUser').then(function(resp){

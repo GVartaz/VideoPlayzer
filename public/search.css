@@ -34,6 +34,16 @@ center h1 img{
     text-overflow: ellipsis;
 }
 
+#favorites select{
+    max-height: 8em;
+}
+#favorites option{
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2em;
+}
+
 table tr{
     padding-bottom: 3%;
 }
