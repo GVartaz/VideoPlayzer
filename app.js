@@ -138,14 +138,15 @@ app.post("/addFav/:id",function(req,res){
     })
 })
 
-app.post("/addVideoToPlaylist/:Indata",function(req,res){
+app.post("/addVideoToPlaylist/:video/:playlist",function(req,res){
+    dataLayer.getPlaylistByName(req.params.playlist,req.session.user._id,function(data){
         var objet = {
-            video : req.params.Indata.id,
-            playlist: req.params.Indata.id_select
+            video : req.params.video,
+            playlist: data
         };
         dataLayer.insertVideoToPlaylist(objet,function(){
-            res.send(true);
-        
+            res.send(true);  
+        })
     })
 })
 

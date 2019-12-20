@@ -82,6 +82,12 @@ var dataLayer = {
         })
     },
 
+    getPlaylistByName : function(name,user,cb){
+        db.collection("Playlist").findOne({"name":name,"auteur":user},function(err,docs){
+            cb(""+docs["_id"]);
+        })
+    },
+
     deletePlaylist : function(id,cb){
         ObjectID = require('mongodb').ObjectID;
         var ident = {

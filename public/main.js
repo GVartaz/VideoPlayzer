@@ -102,7 +102,6 @@ demoApp.controller('SearchController',function($scope,$http){
 
      /**Fonction qui affiche la list des favoris*/ 
     $http.get('/favorites').then(function(resp){
-        console.log(resp.data);
         $scope.favoriteSet = resp.data.videos;
         $scope.playlistSet = resp.data.playlists;
     })
@@ -133,10 +132,9 @@ demoApp.controller('SearchController',function($scope,$http){
         this.showFavorite();
     }
 
-    $scope.videoToPlaylist = function(id,id_select){
-         var Indata = {'id':id, 'id_select':id_select}
-         $http.post('/addVideoToPlaylist/'+Indata)
-         .then(function(resp){
+    $scope.videoToPlaylist = function(id){
+         var Indata = {"id":id, "playlist":document.getElementById("select"+id).value}
+         $http.post('/addVideoToPlaylist/'+Indata.id+'/'+Indata.playlist).then(function(resp){
          })
     }
 

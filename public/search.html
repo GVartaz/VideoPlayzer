@@ -51,10 +51,10 @@
                         </td>
                         <td>
                             <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
-                            <select name="playlist" id="playlistSelect" size="4" >
-                                <option ng-repeat="y in playlistSet" > {{y.name}}</optionng-repeat="y in playlistSet">
+                            <select id="select{{x._id}}" name="playlist" size="4" >
+                                <option ng-repeat="y in playlistSet" > {{y.name}}</option>
                             </select>
-                            <input type="button" value="Add" ng-click="videoToPlaylist(x.id,y.id)">
+                            <input type="button" value="Add" ng-click="videoToPlaylist(x._id)">
                         </td>
                     </tr>
                     
