@@ -6,11 +6,13 @@
         <script src="angular.min.js"></script>
         <script src="main.js"></script>
         <link href="search.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body ng-controller="SearchController">
         <div id="entete" >
-            <button ng-if="user._id" id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <button ng-if="user._id" id="logout" class="btn btn-dark" ng-click="logout()">Déconnexion</button>
             <button ng-if="!user._id" id="logout" class="btn btn-success" ng-click="login()">Connexion</button>
             <center><h1><a href="/search.html"><img src="img/logo.png" alt="Logo Todo"></a>VideoPlayzer</h1></center>
         </div>
@@ -28,7 +30,7 @@
                         <button type="submit" class="btn btn-success" ng-click="createList()">Recherche</button>
                         <div id="site">
                             <input type="radio" checked name="yt">Youtube
-                            <input type="radio" checked name="daily">Dailymotion
+                            <input type="radio" name="daily">Dailymotion
                         </div>
                     </form>
                 </center>
@@ -47,14 +49,16 @@
                             {{x.description}}
                         </td>
                         <td>
-                            {{x.brand}}
+                            <img width="150px" height="90px" src="img/{{x.brand}}.png">
                         </td>
                         <td>
-                            <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
-                            <select id="select{{x._id}}" name="playlist" size="4" >
+                            <select id="select{{x._id}}" class="playlist" size="4" >
                                 <option ng-repeat="y in playlistSet" > {{y.name}}</option>
                             </select>
                             <input type="button" value="Add" ng-click="videoToPlaylist(x._id)">
+                        </td>
+                        <td>
+                            <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
                         </td>
                     </tr>
                     
@@ -74,7 +78,7 @@
                         {{x.description}}
                     </td>
                     <td>
-                        {{x.brand}}
+                        <img width="150px" height="90px" src="img/{{x.brand}}.png">
                     </td>
                 </tr>
                 
@@ -82,9 +86,9 @@
         </div>
         <p id="footer">
             <i>
-                Projet App Web et Mobile - Polytech Marseille
+                Projet Urbanisation et Gouvernance des SI - Polytech Marseille
                 <br>
-                Copyright © Geoffrey VARTAZIAN 2019
+                Copyright © Geoffrey VARTAZIAN Thomas MARTINEZ 2019
             </i>
         </p>
     </body>

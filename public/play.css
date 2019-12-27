@@ -5,11 +5,18 @@
 }
 
 center{
-    padding: 25px;
+    padding-bottom: 25px;
 }
 
 body{
     background-color: #d4d1d1 !important;
+}
+
+#home span{
+    font-size: 400%;
+    padding-top: 50px;
+    padding-left: 50px;
+    color: black !important;
 }
 
 #contenu{
@@ -31,42 +38,10 @@ center h1 img{
     height: 30px;
 }
 
-#favorites{
-    display: inline-block;
-    margin: 5%;
-    text-align: center;
-    border-spacing:25px 50px;
-    border: 1px solid rgba(32, 144, 196, 0.8);
-    border-radius: 13px; 
-    background-color: whitesmoke;
-}
-
-#favorites td, 
-#favorites th { 
-    border-bottom: 1px solid rgba(32, 144, 196, 0.8);
-    padding: 25px; 
-}
-#favorites tr:last-child > td {
-    border-bottom: none;
-}
-
-#videos{
-    display: inline-block;
-    margin: 5%;
-    text-align: center;
-    border-spacing:25px 50px;
-    border: 1px solid rgba(32, 144, 196, 0.8);
-    border-radius: 13px; 
-    background-color: whitesmoke;
-}
-
-#videos td, 
-#videos th { 
-    border-bottom: 1px solid rgba(32, 144, 196, 0.8);
-    padding: 25px; 
-}
-#videos tr:last-child > td {
-    border-bottom: none;
+#favorites infos{
+    max-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #favorites select{
@@ -77,6 +52,14 @@ center h1 img{
     overflow: hidden;
     text-overflow: ellipsis;
     height: 2em;
+}
+
+table tr{
+    padding-bottom: 3%;
+}
+
+#infos{
+    padding: 0% 5%;
 }
 
 #liste{

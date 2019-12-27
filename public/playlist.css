@@ -1,9 +1,11 @@
 #entete{
-    background-image:linear-gradient(rgb(138, 140, 206), rgb(122, 122, 218));
+    background-image:url(img/background_log.jpg);
+    background-repeat: no-repeat;
+
 }
 
 center{
-    padding: 25px;
+    padding-bottom: 25px;
 }
 
 body{
@@ -17,6 +19,32 @@ body{
 center h1 img{
     padding-right: 10px;
     width: 100px;
+}
+
+#home span{
+    font-size: 400%;
+    padding-top: 50px;
+    padding-left: 50px;
+    color: black !important;
+}
+
+#videoPlaylist{
+    display: inline-block !important;
+    margin: 5%;
+    text-align: center;
+    border-spacing:25px 50px;
+    border: 1px solid rgba(32, 144, 196, 0.8);
+    border-radius: 13px; 
+    background-color: whitesmoke;
+}
+
+#videoPlaylist td, 
+#videoPlaylist th { 
+    border-bottom: 1px solid rgba(32, 144, 196, 0.8);
+    padding: 25px; 
+}
+#videoPlaylist tr:last-child > td {
+    border-bottom: none;
 }
 
 #liste{
@@ -97,12 +125,14 @@ center h1 img{
 
 p#footer
 {
-    position: fixed;
+    
     width: 100%;
-    bottom: 0;
-    background: rgba(153, 221, 252, 0.8) ;
-    margin: 100px 0 0 0;
+    background: rgba(32, 144, 196, 0.8) ;
+    margin: 150px 0 0 0;
+    bottom:0;
+    left:0;
     font-size: 1.2em ;
-    color: #000000 ;
+    color: #ffffff ;
     text-align: center ;
+    position: fixed;
 }

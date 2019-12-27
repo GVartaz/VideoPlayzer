@@ -7,15 +7,19 @@
         <title>VideoPlayzer</title>
         <script src="angular.min.js"></script>
         <script src="main.js"></script>
-        <link href="login.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="play.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body ng-controller="PlayController">
         <div id="entete">
-            <button ng-if="user._id" id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
+            <button ng-if="user._id" id="logout" class="btn btn-dark" ng-click="logout()">Déconnexion</button>
             <button ng-if="!user._id" id="logout" class="btn btn-success" ng-click="login()">Connexion</button>
-            <center><h1><img src="img/logo.png" alt="Logo Todo" width="2%" height="2%">Video Playzer</h1></center>
+            <a id="home" href="./search.html">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <center><h1><img src="img/logo.png" alt="Logo Todo" width="5%" height="5%">Video Playzer</h1></center>
         </div>
         <br/> 
         <center>
@@ -32,7 +36,7 @@
         </center>
         <p id="footer">
             <i>
-                Projet Sécurisation des Systèmes de SI - Polytech Marseille
+                Projet Urbanisation et Gouvernance des SI - Polytech Marseille
                 <br>
                 Copyright © Geoffrey VARTAZIAN Thomas MARTINEZ 2019
             </i>

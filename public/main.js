@@ -83,7 +83,7 @@ demoApp.controller('SearchController',function($scope,$http){
     $scope.formVideo = {};
 
     $scope.createList = function (){
-        document.getElementById("videos").style.display = "block";
+        document.getElementById("videos").style.display = "inline-block";
         $http.post('/search',$scope.formVideo).then(function(resp){
             console.log(resp.data.videos);
             $scope.videoSet = resp.data.videos.results;
@@ -97,7 +97,7 @@ demoApp.controller('SearchController',function($scope,$http){
 
     $scope.showFavorite = function(){
         document.getElementById("videos").style.display = "none";
-        document.getElementById("favorites").style.display = "block";
+        document.getElementById("favorites").style.display = "inline-block";
     }
 
      /**Fonction qui affiche la list des favoris*/ 
@@ -158,6 +158,12 @@ demoApp.controller('PlayController',function ($scope, $http,$sce){
         $scope.user = resp.data.user;
     })
 
+    $scope.addFav = function (id){
+        $http.post('/addFav/'+id).then(function(resp){
+            $scope.user = resp.data;
+        })
+    }
+
     $scope.logout = function (){
         $http.post('/logout',$scope.formLogin).then(function(resp){
             $scope.formLogin = {};
@@ -198,6 +204,12 @@ demoApp.controller('PlaylistController',function ($scope, $http){
     };
     
     $scope.openPlaylist = function(id){
+        var btns = document.getElementsByClassName("playlist-btn");
+        for(var i=0;i<btns.length;i++){
+            btns[i].setAttribute("style","color:black;background-color:none;")
+        }
+        document.getElementById("playlist"+id).style.backgroundColor = "rgba(32, 144, 196, 0.8)";
+        document.getElementById("playlist"+id).style.color = "white";
         $http.post('/openPlaylist/'+id).then(function(resp){
             document.getElementById("videoPlaylist").style.display = "block";
             $scope.videoSet = resp.data;
@@ -219,6 +231,7 @@ demoApp.controller('PlaylistController',function ($scope, $http){
         $http.delete('/deletePlaylist/'+id).then(function(resp){
             $scope.playlistSet = resp.data.playlistSet;
         })
+        window.location.reload();
     }
 
     $scope.deleteFromPlaylist = function(id){

@@ -222,7 +222,7 @@ app.delete("/deletePlaylist/:id",function(req,res){
     var id = req.params.id;
         dataLayer.deleteVideosFromPlaylist(id,function(){
             dataLayer.deletePlaylist(id,function(){
-                dataLayer.getPlaylistSet(user,function(data){
+                dataLayer.getPlaylistSet(id,function(data){
                     res.send(data);
                 });
             });
