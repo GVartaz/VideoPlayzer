@@ -104,18 +104,15 @@ var dataLayer = {
         })
     },
 
-    deleteVideoFromPlaylist : function(id,cb){
-        var ident = {
-            _id : id
-        }
-        db.collection("VideoPlaylist").deleteOne(ident,function(err,result){
-            cb();
+    isVideoInPlaylist : function(video,playlist,cb){
+        db.collection("VideoPlaylist").find({"video" :video,"playlist":playlist}).toArray(function(err,docs){
+            cb(docs);
         })
     },
 
-    deleteVideosFromPlaylist : function(playlist,cb){
-        db.collection("VideoPlaylist").deleteMany({"playlist": playlist},function(err,result){
-            cb();
+    isVideoInFav : function(id,user,cb){
+        db.collection("Videos").find({"id" :id,"user":user}).toArray(function(err,docs){
+            cb(docs);
         })
     },
 
@@ -178,7 +175,33 @@ var dataLayer = {
     },
 
     deleteFav : function(id,cb){
-        db.collection("Videos").deleteOne({"id":id},function(err,result){
+        ObjectID = require('mongodb').ObjectID;
+        var ident = {
+            _id : new ObjectID(id)
+        };
+        db.collection("Videos").deleteOne(ident,function(err,result){
+            cb();
+        })
+    },
+
+    deleteVideoFromPlaylists : function(id,cb){
+        db.collection("VideoPlaylist").deleteMany({"video":id},function(err,result){
+            cb();
+        })
+    },
+
+    deleteVideoFromPlaylist : function(id,playlist,cb){
+        var ident = {
+            _id : id,
+            playlist: playlist
+        }
+        db.collection("VideoPlaylist").deleteOne(ident,function(err,result){
+            cb();
+        })
+    },
+
+    deleteVideosFromPlaylist : function(playlist,cb){
+        db.collection("VideoPlaylist").deleteMany({"playlist": playlist},function(err,result){
             cb();
         })
     },

@@ -1,7 +1,12 @@
 #entete{
     background-image:url(img/background_log.jpg);
     background-repeat: no-repeat;
+    width:100%;
+}
 
+#entete a{
+    text-decoration: none;
+    color:black;
 }
 
 center{
@@ -77,6 +82,11 @@ center h1 img{
     overflow: hidden;
     text-overflow: ellipsis;
     height: 2em;
+}
+
+#selectPlaylist select{
+    width: auto;
+    margin-bottom: 25px;
 }
 
 #liste{

@@ -4,6 +4,11 @@
 
 }
 
+#entete a{
+    text-decoration: none;
+    color: black;
+}
+
 center{
     padding: 25px;
 }
@@ -23,6 +28,16 @@ center{
     text-align:center;
 
 
+}
+
+#visitor-div button{
+    width: 25%;
+}
+
+#visitor-div a{
+    color: white;
+    text-decoration: none;
+    font-size: 200%;
 }
 
 #loginForm{

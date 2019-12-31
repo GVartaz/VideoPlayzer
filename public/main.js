@@ -85,7 +85,7 @@ demoApp.controller('SearchController',function($scope,$http){
     $scope.createList = function (){
         document.getElementById("videos").style.display = "inline-block";
         $http.post('/search',$scope.formVideo).then(function(resp){
-            console.log(resp.data.videos);
+            console.log(resp.data.videos.results);
             $scope.videoSet = resp.data.videos.results;
             document.getElementById("favorites").style.display = "none";
         })
@@ -96,16 +96,21 @@ demoApp.controller('SearchController',function($scope,$http){
     }
 
     $scope.showFavorite = function(){
-        document.getElementById("videos").style.display = "none";
-        document.getElementById("favorites").style.display = "inline-block";
+         window.location.reload();
     }
-
-     /**Fonction qui affiche la list des favoris*/ 
-    $http.get('/favorites').then(function(resp){
-        $scope.favoriteSet = resp.data.videos;
-        $scope.playlistSet = resp.data.playlists;
-    })
     
+     /**Fonction qui affiche la list des favoris*/   
+        $http.get('/favorites').then(function(resp){
+            if(resp.data != false){
+                document.getElementById("warning").innerHTML = "";
+                $scope.favoriteSet = resp.data.videos;
+                $scope.playlistSet = resp.data.playlists;
+            } else {
+                document.getElementById("warning").innerHTML = "En tant qu'invité, vous ne pourrez pas sauvegarder "+
+                "de vidéos dans vos favoris. Connectez vous ou inscrivez vous pour profiter de cette fonctionnalité";
+            }
+        })
+
 
     $http.get('/getUser').then(function(resp){
         $scope.user = resp.data;
@@ -126,16 +131,29 @@ demoApp.controller('SearchController',function($scope,$http){
 
     $scope.addFav = function (id){
         $http.post('/addFav/'+id).then(function(resp){
-            $scope.user = resp.data;
+            if(resp.data.add == false){
+                document.getElementById("fav"+id).innerHTML = "Cette vidéo est déjà dans vos favoris";
+                document.getElementById("fav"+id).style.color = "red";
+            } else {
+                document.getElementById("fav"+id).innerHTML = "Vidéo ajouté à vos favoris";
+                document.getElementById("fav"+id).style.color = "green";
+                document.getElementById("addfav"+id).style.display = "none";
+            }
+                $scope.user = resp.data.user;
         })
-        window.location.reload();
-        this.showFavorite();
     }
 
     $scope.videoToPlaylist = function(id){
          var Indata = {"id":id, "playlist":document.getElementById("select"+id).value}
          $http.post('/addVideoToPlaylist/'+Indata.id+'/'+Indata.playlist).then(function(resp){
-         })
+            if(resp.data){
+                document.getElementById("addplaylist"+id).style.color = "green";
+                document.getElementById("addplaylist"+id).innerHTML = "Vidéo ajouté à la playlist";
+            } else {
+                document.getElementById("addplaylist"+id).innerHTML = "La vidéo est déjà dans cette playlist";
+                document.getElementById("addplaylist"+id).style.color = "red";
+            }
+        })
     }
 
     $scope.deleteFav = function (id){

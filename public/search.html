@@ -12,9 +12,9 @@
     </head>
     <body ng-controller="SearchController">
         <div id="entete" >
-            <button ng-if="user._id" id="logout" class="btn btn-dark" ng-click="logout()">Déconnexion</button>
+            <button ng-if="user._id" id="logout" class="btn btn-warning" ng-click="logout()">Déconnexion</button>
             <button ng-if="!user._id" id="logout" class="btn btn-success" ng-click="login()">Connexion</button>
-            <center><h1><a href="/search.html"><img src="img/logo.png" alt="Logo Todo"></a>VideoPlayzer</h1></center>
+            <center><h1><a href="/search.html"><img src="img/logo.png" alt="Logo Todo">VideoPlayzer</a></h1></center>
         </div>
         <div id="contenu">
             <h2>Bienvenue {{user.firstname}}!</h2>
@@ -35,6 +35,7 @@
                     </form>
                 </center>
             </div>
+            <p id="warning"></p>
             <div ng-if="user._id">
                 <table id="favorites">
                     <tr ng-repeat="x in favoriteSet">
@@ -44,21 +45,22 @@
                         <td id="infos">
                             <a ng-click="open(x.id)"><b>{{x.title}}</b></a>
                             <br>
-                            <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
+                            <i>par <b>{{x.channel}}</b></i> - {{x.publishedAt}}
                             <br>
                             {{x.description}}
                         </td>
                         <td>
                             <img width="150px" height="90px" src="img/{{x.brand}}.png">
                         </td>
-                        <td>
-                            <select id="select{{x._id}}" class="playlist" size="4" >
+                        <td id="selectPlaylist" ng-if="playlistSet.length >=1">
+                            <select id="select{{x._id}}" class="form-control">
                                 <option ng-repeat="y in playlistSet" > {{y.name}}</option>
                             </select>
-                            <input type="button" value="Add" ng-click="videoToPlaylist(x._id)">
+                            <input type="button" class="btn btn-primary" value="Add" ng-click="videoToPlaylist(x._id)">
+                            <p id="addplaylist{{x._id}}" ng-if="user._id"></p>
                         </td>
                         <td>
-                            <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x.id)"> x </button>
+                            <button id="del-liste" class="btn btn-danger" ng-click="deleteFav(x._id)"> x </button>
                         </td>
                     </tr>
                     
@@ -71,9 +73,10 @@
                     </td>
                     <td id="infos">
                         <a ng-click="open(x.id)"><b>{{x.title}}</b></a>
-                        <button ng-if="user._id" ng-click="addFav(x.id)">+</button>
+                        <button id="addfav{{x.id}}" ng-if="user._id" ng-click="addFav(x.id)">+</button>
+                        <p id="fav{{x.id}}" ng-if="user._id"></p>
                         <br>
-                        <i>par {{x.channelTitle}}</i> - {{x.publishedAt}}
+                        <i>par <b>{{x.channelTitle}}</b></i> - {{x.publishedAt}}
                         <br>
                         {{x.description}}
                     </td>

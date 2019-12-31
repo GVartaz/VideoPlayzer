@@ -130,8 +130,14 @@ app.post("/addUser",function(req,res){
 app.post("/addFav/:id",function(req,res){
     var u = req.session.user;
     Youtube.getVideoById(req.params.id).then(function(video) {
-        dataLayer.insertVideo(Youtube.normalize(video,u._id),function(){
-            res.send(u);
+        dataLayer.isVideoInFav(req.params.id,u._id,function(data){
+            if(data.length > 0){
+                res.send({add:false,user:u});
+            } else {
+                dataLayer.insertVideo(Youtube.normalize(video,u._id),function(){
+                    res.send({add:true,user:u});
+                })
+            }
         })
     }).catch(function (err) {
         res.send(err);
@@ -144,8 +150,14 @@ app.post("/addVideoToPlaylist/:video/:playlist",function(req,res){
             video : req.params.video,
             playlist: data
         };
-        dataLayer.insertVideoToPlaylist(objet,function(){
-            res.send(true);  
+        dataLayer.isVideoInPlaylist(req.params.video,data,function(data){
+            if(data.length > 0){
+                res.send(false);
+            } else {
+                dataLayer.insertVideoToPlaylist(objet,function(){
+                    res.send(true);  
+                })
+            }
         })
     })
 })
@@ -162,20 +174,26 @@ app.post("/open/:id",function(req,res){
 /*on recupere l'id des vidéos, on cherche dans la base de donnée les videos en rapport avec l'user
 et on appelle youtube avec l'id des videos, on les renvoie */ 
 app.get("/favorites",function(req,res){
-    var user = req.session.user._id;
-    dataLayer.getPlaylistSet(user,function(data){
-        liste = data;
-        dataLayer.getVideos(user,function(data){
-            res.send({videos:data, playlists : liste});
-        })
-    });
+    var user = req.session.user;
+    if(typeof user === 'undefined'){
+        res.send(false);
+    } else {
+        dataLayer.getPlaylistSet(user._id,function(data){
+            liste = data;
+            dataLayer.getVideos(user._id,function(data){
+                res.send({videos:data, playlists : liste});
+            })
+        });
+    }
 })
 
 
 app.delete("/deleteFav/:id",function(req,res){
     var id = req.params.id;
     dataLayer.deleteFav(id,function(){
-        res.send(req.session.user);
+        dataLayer.deleteVideoFromPlaylists(id,function(){
+            res.send(req.session.user);
+        })
     })
 })
 
@@ -192,6 +210,7 @@ app.get("/getTaskSet",function(req,res){
 })
 
 app.get("/getPlaylistSet",function(req,res){
+    req.session.playlist = {};
     var user = req.session.user._id;
     dataLayer.getPlaylistSet(user,function(data){
         res.send({playlistSet: data,user: user});
@@ -210,6 +229,7 @@ app.post("/addPlaylist",function(req,res){
 
 app.post("/openPlaylist/:id",function(req,res){
     var id = req.params.id;
+    req.session.playlist = id;
     dataLayer.getVideoSetPlaylist(id,function(data){
         var liste = data;
         dataLayer.getVideosById(liste,function(data){
@@ -233,7 +253,7 @@ app.delete("/deleteFromPlaylist/:id",function(req,res){
     var id = req.params.id;
     dataLayer.getVideoSetVideo(id,function(data){
         data = data[0]._id;
-        dataLayer.deleteVideoFromPlaylist(data,function(){
+        dataLayer.deleteVideoFromPlaylist(data,req.session.playlist,function(){
             dataLayer.getVideoSetPlaylist(id,function(data){
                 var liste = data;
                 dataLayer.getVideosById(liste,function(data){

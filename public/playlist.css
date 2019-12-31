@@ -1,11 +1,20 @@
 #entete{
     background-image:url(img/background_log.jpg);
     background-repeat: no-repeat;
+    width:100%;
+}
 
+#entete a{
+    text-decoration: none;
+    color:black;
+}
+
+#entete h1{
+    margin: 0;
 }
 
 center{
-    padding-bottom: 25px;
+    padding: 25px;
 }
 
 body{
